@@ -1,0 +1,31 @@
+<p>update-asset works!</p>
+<form [formGroup]="updateAssetForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Field</label>
+            <select formControlName="field" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.field.errors }">
+                <option value="" disabled="disabled" selected>Select a Field</option>
+                <option value="AssetName">AssetName</option>
+                <option value="AssetCategory">AssetCategory</option>
+                <option value="AssetDescription">AssetDescription</option>
+            </select>
+            <div *ngIf="submitted && formControls.field.errors" class="invalid-feedback">
+                <div *ngIf="formControls.field.errors.required">Field is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Value</label>
+            <textarea type="text" formControlName="value" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.value.errors }" ></textarea>
+            <div *ngIf="submitted && formControls.value.errors" class="invalid-feedback">
+                <div *ngIf="formControls.value.errors.required">Asset Description is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary mr-1" [disabled]="updateAssetForm.status == 'INVALID'">Update Asset {{updateAssetForm.status}}</button>
+        <!-- <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button> -->
+    </div>
+</form>
+<div *ngIf="successMessage != ''"> 
+    <p>{{successMessage}}</p>
+</div> 
