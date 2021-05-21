@@ -1,0 +1,29 @@
+<p>view-asset works!</p>
+
+<form>
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Select Asset Id</label>
+            <input type="text" class="form-control" id="name" name="assetId" #assetId>
+        </div>
+    </div>
+    <button (click)=getAsset(assetId.value)>Get Details</button>
+</form>
+
+<tabel *ngIf="assetDetails != ''">
+    <tr>
+        <th>Asset Name</th>
+        <th>Asset Category</th>
+        <th>Asset Description</th>
+        <th>Date of Purchase</th>
+        <th>Asset Cost</th>
+    </tr>
+    <tr>
+        <td>{{assetDetails.assetName}}</td>
+        <td>{{assetDetails.assetCategory}}</td>
+        <td>{{assetDetails.assetDescription}}</td>
+        <td>{{assetDetails.dateOfPurchase}}</td>
+        <td>{{assetDetails.assetCost | currency:'INR':'symbol-narrow':'4.2-2'}} <a (click)="updateAsset(assetDetails.assetId)">Update</a></td>
+    </tr>
+</tabel>
+
